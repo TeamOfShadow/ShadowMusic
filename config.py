@@ -1,5 +1,4 @@
 from os import getenv
-
 from dotenv import load_dotenv
 
 load_dotenv()
@@ -18,6 +17,7 @@ SUDO_USERS = list(map(int, getenv("SUDO_USERS", "").split()))
 OWNER_ID = list(map(int, getenv("OWNER_ID", "").split()))
 LOG_GROUP_ID = int(getenv("LOG_GROUP_ID", ""))
 MUSIC_BOT_NAME = getenv("MUSIC_BOT_NAME")
+
 if str(getenv("SUPPORT_CHANNEL")).strip() == "":
     SUPPORT_CHANNEL = None
 else:
