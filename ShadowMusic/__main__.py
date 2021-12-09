@@ -10,15 +10,15 @@ from rich.console import Console
 from rich.table import Table
 from youtubesearchpython import VideosSearch
 
-from Yukki import (ASSID, ASSMENTION, ASSNAME, ASSUSERNAME, BOT_ID, BOT_NAME,
+from ShadowMusic import (ASSID, ASSMENTION, ASSNAME, ASSUSERNAME, BOT_ID, BOT_NAME,
                    BOT_USERNAME, SUDOERS, app, db, pymongodb, userbot)
-from Yukki.Core.Logger.Log import (startup_delete_last, startup_edit_last,
+from ShadowMusic.Core.Logger.Log import (startup_delete_last, startup_edit_last,
                                    startup_send_new)
-from Yukki.Core.PyTgCalls.Yukki import run
-from Yukki.Database import get_active_chats, get_sudoers, remove_active_chat
-from Yukki.Inline import private_panel
-from Yukki.Plugins import ALL_MODULES
-from Yukki.Utilities.inline import paginate_modules
+from ShadowMusic.Core.PyTgCalls.Yukki import run
+from ShadowMusic.Database import get_active_chats, get_sudoers, remove_active_chat
+from ShadowMusic.Inline import private_panel
+from ShadowMusic.Plugins import ALL_MODULES
+from ShadowMusic.Utilities.inline import paginate_modules
 
 loop = asyncio.get_event_loop()
 console = Console()
@@ -27,7 +27,7 @@ HELPABLE = {}
 
 async def initiate_bot():
     with console.status(
-        "[magenta] Booting up The Yukki Music Bot...",
+        "[magenta] Booting up The ShadowMusic...",
     ) as status:
         console.print("┌ [red]Clearing MongoDB cache...")
         try:
@@ -78,12 +78,12 @@ async def initiate_bot():
         await asyncio.sleep(2.4)
         await startup_delete_last(_____)
     console.print(
-        "[bold green]Congrats!! Yukki Music Bot has started successfully!\n"
+        "[bold green]Congrats!! ShadowMusic has started successfully!\n"
     )
     try:
         await app.send_message(
             LOG_GROUP_ID,
-            "<b>Congrats!! Music Bot has started successfully!</b>",
+            "<b>Congrats!! ShadowMusic has started successfully!</b>",
         )
     except Exception as e:
         print(
@@ -108,9 +108,14 @@ async def initiate_bot():
         console.print(f"\n[red]Stopping Bot")
         return
     try:
-        await userbot.join_chat("OfficialYukki")
+        await userbot.join_chat("ShadowBotUpdates")
     except:
         pass
+    try:
+        await userbot.join_chat("ShadowSupport_Official")
+    except:
+        pass  
+      
     console.print(f"\n┌[red] Bot Started as {BOT_NAME}!")
     console.print(f"├[green] ID :- {BOT_ID}!")
     console.print(f"├[red] Assistant Started as {ASSNAME}!")
@@ -121,6 +126,7 @@ async def initiate_bot():
 
 home_text_pm = f"""Hello ,
 My name is {BOT_NAME}.
+
 I'm Telegram Voice Chat Audio with some useful features.
 
 All commands can be used with: / """
