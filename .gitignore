@@ -1,9 +1,1 @@
-.env
-*.log
-venv/
-.idea/
-*.session
-raw_files/
-downloads/
-__pycache__/
-*.session-journal
+
