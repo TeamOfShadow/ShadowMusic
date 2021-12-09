@@ -52,7 +52,7 @@ async def initiate_bot():
         await asyncio.sleep(1.2)
         for all_module in ALL_MODULES:
             imported_module = importlib.import_module(
-                "Yukki.Plugins." + all_module
+                "ShadowMusic.Plugins." + all_module
             )
             if (
                 hasattr(imported_module, "__MODULE__")
@@ -140,6 +140,12 @@ async def help_command(_, message):
 
 @app.on_message(filters.command("start") & filters.private)
 async def start_command(_, message):
+    if len(message.text.split()) == 1:
+        out = private_panel()
+        await message.reply_text(
+        home_text_pm,
+        reply_markup=InlineKeyboardMarkup(out[1]),
+    )
     if len(message.text.split()) > 1:
         name = (message.text.split(None, 1)[1]).lower()
         if name[0] == "s":
@@ -215,11 +221,7 @@ async def start_command(_, message):
                 parse_mode="markdown",
                 reply_markup=key,
             )
-    out = private_panel()
-    return await message.reply_text(
-        home_text_pm,
-        reply_markup=InlineKeyboardMarkup(out[1]),
-    )
+    return 
 
 
 async def help_parser(name, keyboard=None):
@@ -238,7 +240,7 @@ All commands can be used with: /
     )
 
 
-@app.on_callback_query(filters.regex("shikhar"))
+@app.on_callback_query(filters.regex("shadowmusic"))
 async def shikhar(_, CallbackQuery):
     text, keyboard = await help_parser(CallbackQuery.from_user.mention)
     await CallbackQuery.message.edit(text, reply_markup=keyboard)
