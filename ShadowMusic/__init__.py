@@ -65,7 +65,7 @@ async def initiate_bot():
     os.system("clear")
     header = Table(show_header=True, header_style="bold yellow")
     header.add_column(
-        "\x59\x75\x6b\x6b\x69\x20\x4d\x75\x73\x69\x63\x20\x42\x6f\x74\x20\x3a\x20\x54\x68\x65\x20\x4d\x6f\x73\x74\x20\x41\x64\x76\x61\x6e\x63\x65\x64\x20\x4d\x75\x73\x69\x63\x20\x42\x6f\x74"
+        "ShadowMusic : The Most Advanced Music Bot"
     )
     console.print(header)
     with console.status(
@@ -119,17 +119,6 @@ async def initiate_bot():
             return
         pymongodb = smex.ShadowMusic
         await asyncio.sleep(2)
-        try:
-            pymongodb.command("serverStatus")
-            server_status = "200"
-        except ConnectionFailure:
-            server_status = "404"
-        if not server_status == "200":
-            status.update(status="[bold red] Failed to boot ShadowMusic!")
-            console.print(
-                "[bold yellow] I hate it to say but something is wrong with your database url :(\ntry rechecking it or replace it with a new one.\n\nExiting all processes with SIGTERM..."
-            )
-            return
         console.print("└ [green]Database Validation Successful!")
         await asyncio.sleep(0.9)
         ___ = await startup_edit_last(__, "Refurbishing Necessary Data...")
