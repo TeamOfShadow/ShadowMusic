@@ -54,7 +54,7 @@ async def start_stream(
         to_append = [title, user, duration]
         got_queue.append(to_append)
         final_output = await CallbackQuery.message.reply_photo(
-            photo=thumb,
+            photo="Utils/Queue.png",
             caption=(
                 f"🎬<b>__Song:__ </b>[{title[:25]}](https://www.youtube.com/watch?v={videoid}) \n⏳<b>__Duration:__</b> {duration_min} \n💡<b>__Info:__</b> [Get Additional Information](https://t.me/{BOT_USERNAME}?start=info_{videoid})\n👤<b>__Requested by:__ </b>{CallbackQuery.from_user.mention} \n🚧<b>__Queued at:__</b> <b>#{position}!</b>"
             ),
@@ -135,7 +135,7 @@ async def start_stream_audio(
         to_append = [title, user, duration]
         got_queue.append(to_append)
         final_output = await message.reply_photo(
-            photo="Utils/Telegram.JPEG",
+            photo="Utils/Audio.png",
             caption=(
                 f"🎬<b>__Audio:__ </b> [Given Audio Via Telegram]({link})\n⏳<b>__Duration:__</b> {duration_min} \n👤<b>__Requested by:__ </b>{message.from_user.mention} \n🚧<b>__Queued at:__</b> <b>#{position}!</b>"
             ),
@@ -174,7 +174,7 @@ async def start_stream_audio(
         await mystic.delete()
         cap = f"🎥<b>__Playing:__ </b>[Given Audio Via Telegram]({link})\n👤**__Requested by:__** {message.from_user.mention}"
         final_output = await message.reply_photo(
-            photo="Utils/Telegram.JPEG",
+            photo="Utils/Audio.png",
             reply_markup=InlineKeyboardMarkup(buttons),
             caption=cap,
         )
