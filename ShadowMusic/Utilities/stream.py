@@ -10,9 +10,9 @@ from pytgcalls.types.input_stream import InputAudioStream, InputStream
 from ShadowMusic import BOT_USERNAME, db_mem
 from ShadowMusic.Core.PyTgCalls import Queues, Shadow
 from ShadowMusic.Database import (add_active_chat, is_active_chat, music_off,
-                            music_on)
+                                  music_on)
 from ShadowMusic.Inline import (audio_markup, audio_markup2, primary_markup,
-                          secondary_markup)
+                                secondary_markup)
 from ShadowMusic.Utilities.timer import start_timer
 
 loop = asyncio.get_event_loop()
@@ -163,6 +163,8 @@ async def start_stream_audio(
         got_queue = get_queue.get(message.chat.id)
         title = title
         user = message.from_user.first_name
+        chat_id = message.chat.id
+        user_id = message.from_user.id
         duration = duration_min
         to_append = [title, user, duration]
         got_queue.append(to_append)
@@ -183,8 +185,8 @@ async def start_stream_audio(
             duration_min,
             duration_sec,
             final_output,
-            CallbackQuery.message.chat.id,
-            CallbackQuery.from_user.id,
+            chat_id,
+            user_id,
             1,
         )
 
