@@ -27,17 +27,12 @@ def AssistantAdd(mystic):
                     return
             else:
                 try:
-                    invitelink = await app.export_chat_invite_link(
-                        message.chat.id
-                    )
-                    if invitelink.startswith("https://t.me/+"):
-                        invitelink = invitelink.replace(
-                            "https://t.me/+", "https://t.me/joinchat/"
-                        )
-                    await userbot.join_chat(invitelink)
-                    await message.reply(
-                        f"{ASSMENTION} Joined Successfully",
-                    )
+                    xxy = await app.export_chat_invite_link(message.chat.id)
+                    inv_lnk = str(xxy)
+                    inv_lnk = inv_lnk.replace("https://t.me/+","https://t.me/joinchat/")
+                    await asyncio.sleep(10)
+                    await userbot.join_chat(inv_lnk)
+                    await message.reply(f"{ASSNAME} Joined Successfully") 
                 except UserAlreadyParticipant:
                     pass
                 except Exception as e:
