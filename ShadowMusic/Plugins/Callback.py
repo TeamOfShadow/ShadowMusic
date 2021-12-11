@@ -279,7 +279,7 @@ async def play_playlist(_, CallbackQuery):
         for_t = 0
         for_p = 0
         for deshadeeththisarana in _playlist:
-            _note = await get_playlist(user_id, shikhar, type)
+            _note = await get_playlist(user_id, deshadeeththisarana, type)
             title = _note["title"]
             videoid = _note["videoid"]
             url = f"https://www.youtube.com/watch?v={videoid}"
@@ -535,7 +535,7 @@ async def del_playlist(_, CallbackQuery):
         await CallbackQuery.message.delete()
         await CallbackQuery.answer()
         for deshadeeththisarana in _playlist:
-            await delete_playlist(user_id, shikhar, genre)
+            await delete_playlist(user_id, deshadeeththisarana, genre)
     await CallbackQuery.message.reply_text(
         f"Successfully deleted {type}'s {genre} whole playlist\n\nBy :- {CallbackQuery.from_user.mention}"
     )
