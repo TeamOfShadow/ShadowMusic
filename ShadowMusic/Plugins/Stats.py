@@ -88,7 +88,7 @@ async def stats_markup(_, CallbackQuery):
         smex = f"""
 [•]<u>**System Stats**</u>
 
-**Yukki Uptime:** {uptime}
+**{MUSIC_BOT_NAME} Uptime:** {uptime}
 **System Proc:** Online
 **Platform:** {sc}
 **Architecture:** {arch}
