@@ -205,3 +205,27 @@ async def baujaf(_, message):
         await message.reply_text(f"Failed\n**Possible reason could be**:{e}")
         return
     await message.reply_text("Left.")
+    
+
+@app.on_message(filters.command(["leaveall"]))
+async def bye(client, message):
+    if message.from_user.id in SUDOERS:
+        left = 0
+        failed = 0
+        lol = await message.reply("Assistant Leaving all chats")
+        async for dialog in userbot.iter_dialogs():
+            try:
+                await userbot.leave_chat(dialog.chat.id)
+                left = left + 1
+                await lol.edit(
+                    f"Assistant leaving... Left: {left} chats. Failed: {failed} chats."
+                )
+            except:
+                failed = failed + 1
+                await lol.edit(
+                    f"Assistant leaving... Left: {left} chats. Failed: {failed} chats."
+                )
+            await asyncio.sleep(0.7)
+        await client.send_message(
+            message.chat.id, f"Left {left} chats. Failed {failed} chats."
+        )
