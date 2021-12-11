@@ -480,7 +480,7 @@ async def check_playlist(_, CallbackQuery):
         msg = f"Fetched Playlist:\n\n"
         for deshadeeththisarana in _playlist:
             j += 1
-            _note = await get_playlist(user_id, shikhar, genre)
+            _note = await get_playlist(user_id, deshadeeththisarana, genre)
             title = _note["title"]
             duration = _note["duration"]
             msg += f"{j}- {title[:60]}\n"
