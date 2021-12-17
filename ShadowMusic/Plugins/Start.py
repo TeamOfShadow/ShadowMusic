@@ -63,27 +63,27 @@ async def welcome(_, message: Message):
             if member.id == ASSID:
                 await remove_active_chat(chat_id)
             if member.id == BOT_ID:
-                out = start_pannel()
-                await message.reply_text(
-                    f"Welcome To {MUSIC_BOT_NAME}\n\nPromote me as administrator in your group otherwise I will not function properly.",
-                    reply_markup=InlineKeyboardMarkup(out[1]),
-                )
+                #out = start_pannel()
+                #await message.reply_text(
+                #    f"Welcome To {MUSIC_BOT_NAME}\n\nPromote me as administrator in your group otherwise I will not function properly.",
+                #    reply_markup=InlineKeyboardMarkup(out[1]),
+                #)
                 return
         except:
             return
 
 
-@app.on_message(filters.command(["help", "start"]) & filters.group)
-@PermissionCheck
-async def useradd(_, message: Message):
-    out = start_pannel()
-    await asyncio.gather(
-        message.delete(),
-        message.reply_text(
-            f"Thanks for having me in {message.chat.title}.\n{MUSIC_BOT_NAME} is alive.\n\nFor any assistance or help, checkout our support group and channel.",
-            reply_markup=InlineKeyboardMarkup(out[1]),
-        ),
-    )
+#@app.on_message(filters.command(["help", "start"]) & filters.group)
+#@PermissionCheck
+#async def useradd(_, message: Message):
+#    out = start_pannel()
+#    await asyncio.gather(
+#        message.delete(),
+#        message.reply_text(
+#            f"Thanks for having me in {message.chat.title}.\n{MUSIC_BOT_NAME} is alive.\n\nFor any assistance or help, checkout our support group and channel.",
+#            reply_markup=InlineKeyboardMarkup(out[1]),
+#        ),
+#    )
 
 
 @app.on_callback_query(filters.regex("okaybhai"))
