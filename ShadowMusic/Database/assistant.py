@@ -2,7 +2,7 @@ from typing import Dict, List, Union
 
 from ShadowMusic import db
 
-assisdb = db.assis
+assisdb = db.multiassistant
 
 
 async def get_as_names(chat_id: int) -> List[str]:
