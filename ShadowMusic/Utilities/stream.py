@@ -2,13 +2,12 @@ import asyncio
 import os
 import shutil
 
-from config import get_queue
 from pyrogram.types import InlineKeyboardMarkup
-from pytgcalls import StreamType
-from pytgcalls.types.input_stream import InputAudioStream, InputStream
 
+from config import get_queue
 from ShadowMusic import BOT_USERNAME, db_mem
-from ShadowMusic.Core.PyTgCalls import Queues, Shadow
+from ShadowMusic.Core.PyTgCalls import Queues
+from ShadowMusic.Core.PyTgCalls.Shadow import join_stream
 from ShadowMusic.Database import (add_active_chat, is_active_chat, music_off,
                                   music_on)
 from ShadowMusic.Inline import (audio_markup, audio_markup2, primary_markup,
@@ -65,17 +64,7 @@ async def start_stream(
         os.remove(thumb)
         return
     else:
-        try:
-            await Shadow.pytgcalls.join_group_call(
-                CallbackQuery.message.chat.id,
-                InputStream(
-                    InputAudioStream(
-                        file,
-                    ),
-                ),
-                stream_type=StreamType().local_stream,
-            )
-        except Exception as e:
+        if not await join_stream(CallbackQuery.message.chat.id, file):
             return await mystic.edit(
                 "Error Joining Voice Chat. Make sure Voice Chat is Enabled."
             )
@@ -144,27 +133,14 @@ async def start_stream_audio(
         await mystic.delete()
         return
     else:
-        try:
-            await Shadow.pytgcalls.join_group_call(
-                message.chat.id,
-                InputStream(
-                    InputAudioStream(
-                        file,
-                    ),
-                ),
-                stream_type=StreamType().local_stream,
-            )
-        except Exception as e:
-            await mystic.edit(
+        if not await join_stream(message.chat.id, file):
+            return await mystic.edit(
                 "Error Joining Voice Chat. Make sure Voice Chat is Enabled."
             )
-            return
         get_queue[message.chat.id] = []
         got_queue = get_queue.get(message.chat.id)
         title = title
         user = message.from_user.first_name
-        chat_id = message.chat.id
-        user_id = message.from_user.id
         duration = duration_min
         to_append = [title, user, duration]
         got_queue.append(to_append)
@@ -185,8 +161,7 @@ async def start_stream_audio(
             duration_min,
             duration_sec,
             final_output,
-            chat_id,
-            user_id,
+            message.chat.id,
+            message.from_user.id,
             1,
         )
-
