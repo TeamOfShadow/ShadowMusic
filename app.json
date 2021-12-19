@@ -65,10 +65,30 @@
       "value": "",
       "required": true
     },
-    "STRING_SESSION": {
-      "description": "A Pyrogram String Session.",
+    "STRING_SESSION1": {
+      "description": "A Pyrogram String Session of Assistant Account.",
       "value": "",
       "required": true
+    },
+    "STRING_SESSION2": {
+      "description": "A Pyrogram String Session of Assistant Account.",
+      "value": "",
+      "required": false
+    },
+    "STRING_SESSION3": {
+      "description": "A Pyrogram String Session of Assistant Account.",
+      "value": "",
+      "required": false
+    },
+    "STRING_SESSION4": {
+      "description": "A Pyrogram String Session of Assistant Account.",
+      "value": "",
+      "required": false
+    },
+    "STRING_SESSION5": {
+      "description": "A Pyrogram String Session of Assistant Account.",
+      "value": "",
+      "required": false
     },
     "LOG_GROUP_ID": {
       "description": "Your Log Group ID, add your bot and promote as an admin with full rights!. Use only Group. Please don't use Channel ID.",
