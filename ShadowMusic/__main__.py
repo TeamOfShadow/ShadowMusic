@@ -3,18 +3,21 @@ import importlib
 import os
 import re
 
-from config import LOG_GROUP_ID
 from pyrogram import filters
 from pyrogram.types import InlineKeyboardButton, InlineKeyboardMarkup
+from pytgcalls import idle
 from rich.console import Console
 from rich.table import Table
 from youtubesearchpython import VideosSearch
 
-from ShadowMusic import (ASSID, ASSMENTION, ASSNAME, ASSUSERNAME, BOT_ID, BOT_NAME,
-                   BOT_USERNAME, SUDOERS, app, db, pymongodb, userbot)
+from config import LOG_GROUP_ID
+from ShadowMusic import (ASS_CLI_1, ASS_CLI_2, ASS_CLI_3, ASS_CLI_4, ASS_CLI_5,
+                         ASSID1, ASSID2, ASSID3, ASSID4, ASSID5, ASSNAME1, ASSNAME2,
+                         ASSNAME3, ASSNAME4, ASSNAME5, BOT_ID, BOT_NAME, app)
 from ShadowMusic.Core.Logger.Log import (startup_delete_last, startup_edit_last,
-                                   startup_send_new)
-from ShadowMusic.Core.PyTgCalls.Shadow import run
+                                         startup_send_new)
+from ShadowMusic.Core.PyTgCalls.Yukki import (pytgcalls1, pytgcalls2, pytgcalls3,
+                                              pytgcalls4, pytgcalls5)
 from ShadowMusic.Database import get_active_chats, get_sudoers, remove_active_chat
 from ShadowMusic.Inline import private_panel
 from ShadowMusic.Plugins import ALL_MODULES
@@ -27,7 +30,7 @@ HELPABLE = {}
 
 async def initiate_bot():
     with console.status(
-        "[magenta] Booting up The ShadowMusic...",
+        "[magenta] Booting up The ShadowMusic Bot...",
     ) as status:
         console.print("┌ [red]Clearing MongoDB cache...")
         try:
@@ -83,7 +86,7 @@ async def initiate_bot():
     try:
         await app.send_message(
             LOG_GROUP_ID,
-            "<b>Congrats!! ShadowMusic has started successfully!</b>",
+            "<b>✅ ShadowMusic has started successfully!</b>",
         )
     except Exception as e:
         print(
@@ -97,42 +100,113 @@ async def initiate_bot():
         console.print(f"\n[red]Stopping Bot")
         return
     try:
-        await userbot.send_message(
+        await ASS_CLI_1.send_message(
             LOG_GROUP_ID,
-            "<b>Congrats!! Assistant has started successfully!</b>",
+            "<b>✅ Assistant Client 1️⃣ successfully!</b>",
         )
     except Exception as e:
         print(
-            "Assistant Account has failed to access the log Channel. Make sure that you have added your bot to your log channel and promoted as admin!"
+            "Assistant Account 1 has failed to access the log Channel. Make sure that you have added your Assistant to your log channel and promoted as admin!"
         )
         console.print(f"\n[red]Stopping Bot")
         return
     try:
-        await userbot.join_chat("ShadowBotUpdates")
+        await ASS_CLI_1.join_chat("ShadowSupport_Official")
+        await ASS_CLI_1.join_chat("ShadowBotUpdates")
     except:
         pass
     try:
-        await userbot.join_chat("ShadowSupport_Official")
+        await ASS_CLI_2.send_message(
+            LOG_GROUP_ID,
+            "<b>✅ Assistant Client 2️⃣ successfully!</b>",
+        )
+    except Exception as e:
+        print(
+            "Assistant Account 2 has failed to access the log Channel. Make sure that you have added your Assistant to your log channel and promoted as admin!"
+        )
+        console.print(f"\n[red]Stopping Bot")
+        return
+    try:
+        await ASS_CLI_2.join_chat("ShadowSupport_Official")
+        await ASS_CLI_2.join_chat("ShadowBotUpdates")
     except:
-        pass  
-      
+        pass
+    try:
+        await ASS_CLI_3.send_message(
+            LOG_GROUP_ID,
+            "<b>✅ Assistant Client 3️⃣ successfully!</b>",
+        )
+    except Exception as e:
+        print(
+            "Assistant Account 3 has failed to access the log Channel. Make sure that you have added your Assistant to your log channel and promoted as admin!"
+        )
+        console.print(f"\n[red]Stopping Bot")
+        return
+    try:
+        await ASS_CLI_3.join_chat("ShadowSupport_Official")
+        await ASS_CLI_3.join_chat("ShadowBotUpdates")
+    except:
+        pass
+    try:
+        await ASS_CLI_4.send_message(
+            LOG_GROUP_ID,
+            "<b>✅ Assistant Client 4️⃣ successfully!</b>",
+        )
+    except Exception as e:
+        print(
+            "Assistant Account 4 has failed to access the log Channel. Make sure that you have added your Assistant to your log channel and promoted as admin!"
+        )
+        console.print(f"\n[red]Stopping Bot")
+        return
+    try:
+        await ASS_CLI_4.join_chat("ShadowSupport_Official")
+        await ASS_CLI_4.join_chat("ShadowBotUpdates")
+    except:
+        pass
+    try:
+        await ASS_CLI_5.send_message(
+            LOG_GROUP_ID,
+            "<b>✅ Assistant Client 5️⃣ successfully!</b>",
+        )
+    except Exception as e:
+        print(
+            "Assistant Account 5 has failed to access the log Channel. Make sure that you have added your Assistant to your log channel and promoted as admin!"
+        )
+        console.print(f"\n[red]Stopping Bot")
+        return
+    try:
+        await ASS_CLI_5.join_chat("ShadowSupport_Official")
+        await ASS_CLI_5.join_chat("ShadowBotUpdates")
+    except:
+        pass
     console.print(f"\n┌[red] Bot Started as {BOT_NAME}!")
     console.print(f"├[green] ID :- {BOT_ID}!")
-    console.print(f"├[red] Assistant Started as {ASSNAME}!")
-    console.print(f"└[green] ID :- {ASSID}!")
-    await run()
+    console.print(f"├[red] Assistant 1 Started as {ASSNAME1}!")
+    console.print(f"├[green] ID :- {ASSID1}!")
+    console.print(f"├[red] Assistant 2 Started as {ASSNAME2}!")
+    console.print(f"├[green] ID :- {ASSID2}!")
+    console.print(f"├[red] Assistant 3 Started as {ASSNAME3}!")
+    console.print(f"├[green] ID :- {ASSID3}!")
+    console.print(f"├[red] Assistant 4 Started as {ASSNAME4}!")
+    console.print(f"├[green] ID :- {ASSID4}!")
+    console.print(f"├[red] Assistant 5 Started as {ASSNAME5}!")
+    console.print(f"└[green] ID :- {ASSID5}!")
+    await pytgcalls1.start()
+    await pytgcalls2.start()
+    await pytgcalls3.start()
+    await pytgcalls4.start()
+    await pytgcalls5.start()
+    await idle()
     console.print(f"\n[red]Stopping Bot")
 
 
 home_text_pm = f"""Hello ,
 My name is {BOT_NAME}.
-
 I'm Telegram Voice Chat Audio with some useful features.
-
 All commands can be used with: / """
 
 
-@app.on_message(filters.command("help") & filters.private)
+@app.on_message(filters.command("vchelp") & filters.private)
 async def help_command(_, message):
     text, keyboard = await help_parser(message.from_user.mention)
     await app.send_message(message.chat.id, text, reply_markup=keyboard)
@@ -140,17 +214,11 @@ async def help_command(_, message):
 
 @app.on_message(filters.command("start") & filters.private)
 async def start_command(_, message):
-    if len(message.text.split()) == 1:
-        out = private_panel()
-        await message.reply_text(
-        home_text_pm,
-        reply_markup=InlineKeyboardMarkup(out[1]),
-    )
     if len(message.text.split()) > 1:
         name = (message.text.split(None, 1)[1]).lower()
         if name[0] == "s":
             sudoers = await get_sudoers()
-            text = "**__Sudo Users List of Bot:-__**\n\n"
+            text = "**__Sudo Users List of ShadowMusic:-__**\n\n"
             j = 0
             for count, user_id in enumerate(sudoers, 1):
                 try:
@@ -166,14 +234,14 @@ async def start_command(_, message):
                 await message.reply_text("No Sudo Users")
             else:
                 await message.reply_text(text)
-        if name == "help":
-            text, keyboard = await help_parser(message.from_user.mention)
-            await message.delete()
-            return await app.send_text(
-                message.chat.id,
-                text,
-                reply_markup=keyboard,
-            )
+        #if name == "help":
+        #    text, keyboard = await help_parser(message.from_user.mention)
+        #    await message.delete()
+        #    return await app.send_text(
+        #        message.chat.id,
+        #        text,
+        #        reply_markup=keyboard,
+        #    )
         if name[0] == "i":
             m = await message.reply_text("🔎 Fetching Info...!")
             query = (str(name)).replace("info_", "", 1)
@@ -221,7 +289,11 @@ async def start_command(_, message):
                 parse_mode="markdown",
                 reply_markup=key,
             )
-    return 
+    #out = private_panel()
+    return #await message.reply_text(
+        #home_text_pm,
+        #reply_markup=InlineKeyboardMarkup(out[1]),
+    #)
 
 
 async def help_parser(name, keyboard=None):
@@ -229,7 +301,7 @@ async def help_parser(name, keyboard=None):
         keyboard = InlineKeyboardMarkup(paginate_modules(0, HELPABLE, "help"))
     return (
         """Hello {first_name},
-
+        
 Click on the buttons for more information.
 
 All commands can be used with: /
@@ -255,9 +327,7 @@ async def help_button(client, query):
     back_match = re.match(r"help_back", query.data)
     create_match = re.match(r"help_create", query.data)
     top_text = f"""Hello {query.from_user.first_name},
-
 Click on the buttons for more information.
-
 All commands can be used with: /
  """
     if mod_match:
@@ -281,11 +351,11 @@ All commands can be used with: /
             ]
         )
 
-        await query.message.edit(
-            text=text,
-            reply_markup=key,
-            disable_web_page_preview=True,
-        )
+        #await query.message.edit(
+        #    text=text,
+        #    reply_markup=key,
+        #    disable_web_page_preview=True,
+        #)
     elif home_match:
         out = private_panel()
         await app.send_message(
@@ -336,4 +406,3 @@ All commands can be used with: /
 
 if __name__ == "__main__":
     loop.run_until_complete(initiate_bot())
-
