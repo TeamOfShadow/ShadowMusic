@@ -3,20 +3,21 @@ import os
 import time
 from asyncio import QueueEmpty
 
-from config import get_queue
 from pyrogram.errors import FloodWait, MessageNotModified
 from pyrogram.types import (CallbackQuery, InlineKeyboardButton,
                             InlineKeyboardMarkup, KeyboardButton, Message,
                             ReplyKeyboardMarkup, ReplyKeyboardRemove)
-from pytgcalls import PyTgCalls
+from pytgcalls import PyTgCalls, StreamType
 from pytgcalls.types import Update
 from pytgcalls.types.input_stream import InputAudioStream, InputStream
 
-from ShadowMusic import MUSIC_BOT_NAME, app, db_mem, userbot
+from config import get_queue
+from ShadowMusic import (ASS_CLI_1, ASS_CLI_2, ASS_CLI_3, ASS_CLI_4, ASS_CLI_5,
+                         MUSIC_BOT_NAME, app, db_mem)
 from ShadowMusic.Core.PyTgCalls import Queues
 from ShadowMusic.Core.PyTgCalls.Converter import convert
 from ShadowMusic.Core.PyTgCalls.Downloader import download
-from ShadowMusic.Database import remove_active_chat
+from ShadowMusic.Database import get_assistant, remove_active_chat
 from ShadowMusic.Inline import (audio_markup, audio_timer_markup_start,
                           primary_markup, timer_markup)
 from ShadowMusic.Utilities.changers import time_to_seconds
@@ -26,35 +27,210 @@ from ShadowMusic.Utilities.thumbnails import gen_thumb
 from ShadowMusic.Utilities.timer import start_timer
 from ShadowMusic.Utilities.youtube import get_yt_info_id
 
-pytgcalls = PyTgCalls(userbot)
+### Clients
+
+pytgcalls1 = PyTgCalls(ASS_CLI_1)
+pytgcalls2 = PyTgCalls(ASS_CLI_2)
+pytgcalls3 = PyTgCalls(ASS_CLI_3)
+pytgcalls4 = PyTgCalls(ASS_CLI_4)
+pytgcalls5 = PyTgCalls(ASS_CLI_5)
 
 
-@pytgcalls.on_kicked()
-async def kicked_handler(client: PyTgCalls, chat_id: int):
-    try:
-        Queues.clear(chat_id)
-    except QueueEmpty:
-        pass
-    await remove_active_chat(chat_id)
+### Multi Assistant start
 
 
-@pytgcalls.on_closed_voice_chat()
-async def kicked_handler(client: PyTgCalls, chat_id: int):
-    try:
-        Queues.clear(chat_id)
-    except QueueEmpty:
-        pass
-    await remove_active_chat(chat_id)
+async def join_stream(chat_id: int, file_path: str):
+    _assistant = await get_assistant(chat_id, "assistant")
+    assistant = _assistant["saveassistant"]
+    if int(assistant) == 1:
+        try:
+            await pytgcalls1.join_group_call(
+                chat_id,
+                InputStream(
+                    InputAudioStream(
+                        file_path,
+                    ),
+                ),
+                stream_type=StreamType().local_stream,
+            )
+            return True
+        except:
+            return False
+    elif int(assistant) == 2:
+        try:
+            await pytgcalls2.join_group_call(
+                chat_id,
+                InputStream(
+                    InputAudioStream(
+                        file_path,
+                    ),
+                ),
+                stream_type=StreamType().local_stream,
+            )
+            return True
+        except:
+            return False
+    elif int(assistant) == 3:
+        try:
+            await pytgcalls3.join_group_call(
+                chat_id,
+                InputStream(
+                    InputAudioStream(
+                        file_path,
+                    ),
+                ),
+                stream_type=StreamType().local_stream,
+            )
+            return True
+        except:
+            return False
+    elif int(assistant) == 4:
+        try:
+            await pytgcalls4.join_group_call(
+                chat_id,
+                InputStream(
+                    InputAudioStream(
+                        file_path,
+                    ),
+                ),
+                stream_type=StreamType().local_stream,
+            )
+            return True
+        except:
+            return False
+    elif int(assistant) == 5:
+        try:
+            await pytgcalls5.join_group_call(
+                chat_id,
+                InputStream(
+                    InputAudioStream(
+                        file_path,
+                    ),
+                ),
+                stream_type=StreamType().local_stream,
+            )
+            return True
+        except:
+            return False
+    return False
 
 
-@pytgcalls.on_stream_end()
-async def on_stream_end(client: PyTgCalls, update: Update) -> None:
-    chat_id = update.chat_id
+### Multi Assistant Pause
+
+
+async def pause_stream(chat_id: int):
+    _assistant = await get_assistant(chat_id, "assistant")
+    assistant = _assistant["saveassistant"]
+    if int(assistant) == 1:
+        await pytgcalls1.pause_stream(chat_id)
+    elif int(assistant) == 2:
+        await pytgcalls2.pause_stream(chat_id)
+    elif int(assistant) == 3:
+        await pytgcalls3.pause_stream(chat_id)
+    elif int(assistant) == 4:
+        await pytgcalls4.pause_stream(chat_id)
+    elif int(assistant) == 5:
+        await pytgcalls5.pause_stream(chat_id)
+
+
+### Multi Assistant Resume
+
+
+async def resume_stream(chat_id: int):
+    _assistant = await get_assistant(chat_id, "assistant")
+    assistant = _assistant["saveassistant"]
+    if int(assistant) == 1:
+        await pytgcalls1.resume_stream(chat_id)
+    elif int(assistant) == 2:
+        await pytgcalls2.resume_stream(chat_id)
+    elif int(assistant) == 3:
+        await pytgcalls3.resume_stream(chat_id)
+    elif int(assistant) == 4:
+        await pytgcalls4.resume_stream(chat_id)
+    elif int(assistant) == 5:
+        await pytgcalls5.resume_stream(chat_id)
+
+
+### Multi Assistant Stop
+
+
+async def stop_stream(chat_id: int):
+    _assistant = await get_assistant(chat_id, "assistant")
+    assistant = _assistant["saveassistant"]
+    if int(assistant) == 1:
+        await pytgcalls1.leave_group_call(chat_id)
+    elif int(assistant) == 2:
+        await pytgcalls2.leave_group_call(chat_id)
+    elif int(assistant) == 3:
+        await pytgcalls3.leave_group_call(chat_id)
+    elif int(assistant) == 4:
+        await pytgcalls4.leave_group_call(chat_id)
+    elif int(assistant) == 5:
+        await pytgcalls5.leave_group_call(chat_id)
+
+
+### Multi Assistant Skip
+
+
+async def skip_stream(chat_id: int, file_path: str):
+    _assistant = await get_assistant(chat_id, "assistant")
+    assistant = _assistant["saveassistant"]
+    if int(assistant) == 1:
+        await pytgcalls1.change_stream(
+            chat_id,
+            InputStream(
+                InputAudioStream(
+                    file_path,
+                ),
+            ),
+        )
+    elif int(assistant) == 2:
+        await pytgcalls2.change_stream(
+            chat_id,
+            InputStream(
+                InputAudioStream(
+                    file_path,
+                ),
+            ),
+        )
+    elif int(assistant) == 3:
+        await pytgcalls3.change_stream(
+            chat_id,
+            InputStream(
+                InputAudioStream(
+                    file_path,
+                ),
+            ),
+        )
+    elif int(assistant) == 4:
+        await pytgcalls4.change_stream(
+            chat_id,
+            InputStream(
+                InputAudioStream(
+                    file_path,
+                ),
+            ),
+        )
+    elif int(assistant) == 5:
+        await pytgcalls5.change_stream(
+            chat_id,
+            InputStream(
+                InputAudioStream(
+                    file_path,
+                ),
+            ),
+        )
+
+
+### Multi Assistant Playout End
+
+
+async def playout_end(pytgclients, chat_id):
     try:
         Queues.task_done(chat_id)
         if Queues.is_empty(chat_id):
             await remove_active_chat(chat_id)
-            await pytgcalls.leave_group_call(chat_id)
+            await pytgclients.leave_group_call(chat_id)
         else:
             afk = Queues.get(chat_id)["file"]
             finxx = f"{afk[0]}{afk[1]}{afk[2]}"
@@ -81,7 +257,7 @@ async def on_stream_end(client: PyTgCalls, update: Update) -> None:
                     None, download, afk, mystic, title
                 )
                 raw_path = await convert(downloaded_file)
-                await pytgcalls.change_stream(
+                await pytgclients.change_stream(
                     chat_id,
                     InputStream(
                         InputAudioStream(
@@ -113,7 +289,7 @@ async def on_stream_end(client: PyTgCalls, update: Update) -> None:
                 videoid = afk
             else:
                 videoid = afk
-                await pytgcalls.change_stream(
+                await pytgclients.change_stream(
                     chat_id,
                     InputStream(
                         InputAudioStream(
@@ -130,7 +306,7 @@ async def on_stream_end(client: PyTgCalls, update: Update) -> None:
                     buttons = buttons = audio_markup(
                         videoid, "283402", duration_min, duration_min
                     )
-                    thumb = "Utils/Telegram.JPEG"
+                    thumb = "Utils/Audio.png"
                     aud = 1
                 else:
                     _path_ = _path_ = (
@@ -162,5 +338,126 @@ async def on_stream_end(client: PyTgCalls, update: Update) -> None:
         print(e)
 
 
-run = pytgcalls.run
+### Multi Assistant Queue Clear
 
+
+async def clear_queue(chat_id):
+    try:
+        Queues.clear(chat_id)
+    except QueueEmpty:
+        pass
+    await remove_active_chat(chat_id)
+
+
+### Playout End For Client 1
+@pytgcalls1.on_stream_end()
+async def stream_end_handler1(_, update: Update):
+    await playout_end(pytgcalls1, update.chat_id)
+
+
+### Playout End For Client 2
+@pytgcalls2.on_stream_end()
+async def stream_end_handler(_, update: Update):
+    await playout_end(pytgcalls2, update.chat_id)
+
+
+### Playout End For Client 3
+@pytgcalls3.on_stream_end()
+async def stream_end_handler3(_, update: Update):
+    await playout_end(pytgcalls3, update.chat_id)
+
+
+### Playout End For Client 4
+@pytgcalls4.on_stream_end()
+async def stream_end_handler(_, update: Update):
+    await playout_end(pytgcalls4, update.chat_id)
+
+
+### Playout End For Client 5
+@pytgcalls5.on_stream_end()
+async def stream_end_handler5(_, update: Update):
+    await playout_end(pytgcalls5, update.chat_id)
+
+
+### Kicked Handlers
+
+
+@pytgcalls1.on_kicked()
+async def kicked_handler1(_, chat_id: int):
+    await clear_queue(chat_id)
+
+
+@pytgcalls2.on_kicked()
+async def kicked_handler2(_, chat_id: int):
+    await clear_queue(chat_id)
+
+
+@pytgcalls3.on_kicked()
+async def kicked_handle3(_, chat_id: int):
+    await clear_queue(chat_id)
+
+
+@pytgcalls4.on_kicked()
+async def kicked_handler4(_, chat_id: int):
+    await clear_queue(chat_id)
+
+
+@pytgcalls5.on_kicked()
+async def kicked_handler5(_, chat_id: int):
+    await clear_queue(chat_id)
+
+
+### Closed Handlers
+
+
+@pytgcalls1.on_closed_voice_chat()
+async def closed_voice_chat_handler1(_, chat_id: int):
+    await clear_queue(chat_id)
+
+
+@pytgcalls2.on_closed_voice_chat()
+async def closed_voice_chat_handler2(_, chat_id: int):
+    await clear_queue(chat_id)
+
+
+@pytgcalls3.on_closed_voice_chat()
+async def closed_voice_chat_handler3(_, chat_id: int):
+    await clear_queue(chat_id)
+
+
+@pytgcalls4.on_closed_voice_chat()
+async def closed_voice_chat_handler4(_, chat_id: int):
+    await clear_queue(chat_id)
+
+
+@pytgcalls5.on_closed_voice_chat()
+async def closed_voice_chat_handler5(_, chat_id: int):
+    await clear_queue(chat_id)
+
+
+### Left Handlers
+
+
+@pytgcalls1.on_left()
+async def left_handler1(_, chat_id: int):
+    await clear_queue(chat_id)
+
+
+@pytgcalls2.on_left()
+async def left_handler2(_, chat_id: int):
+    await clear_queue(chat_id)
+
+
+@pytgcalls3.on_left()
+async def left_handler3(_, chat_id: int):
+    await clear_queue(chat_id)
+
+
+@pytgcalls4.on_left()
+async def left_handler4(_, chat_id: int):
+    await clear_queue(chat_id)
+
+
+@pytgcalls5.on_left()
+async def left_handler5(_, chat_id: int):
+    await clear_queue(chat_id)
