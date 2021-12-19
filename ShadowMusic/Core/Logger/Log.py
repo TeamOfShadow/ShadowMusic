@@ -1,9 +1,7 @@
 from config import LOG_GROUP_ID as _channel_id_
-
-from ShadowMusic.Core.Clients.cli import app, userbot
+from ShadowMusic.Core.Clients.cli import app
 
 failure = "Make sure your bot is in your log channel and is promoted as an admin with full rights!"
-
 
 async def log(_message_):
     try:
