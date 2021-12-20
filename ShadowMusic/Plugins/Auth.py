@@ -1,29 +1,22 @@
 from pyrogram import Client, filters
 from pyrogram.types import Message
 
-from ShadowMusic import SUDOERS, app
+from ShadowMusic import app
 from ShadowMusic.Database import (_get_authusers, delete_authuser, get_authuser,
-                            get_authuser_count, get_authuser_names,
-                            save_authuser)
+                                  get_authuser_count, get_authuser_names,
+                                  save_authuser)
 from ShadowMusic.Decorators.admins import AdminActual
 from ShadowMusic.Utilities.changers import (alpha_to_int, int_to_alpha,
-                                      time_to_seconds)
+                                            time_to_seconds)
 
 __MODULE__ = "Auth Users"
 __HELP__ = """
-
 **Note:**
--Auth users can skip, pause, stop, resume Voice Chats even without Admin Rights.
+=> Auth users can skip, pause, stop, resume Voice Chats even without Admin Rights.
 
-
-/auth [Username or Reply to a Message] 
-- Add a user to AUTH LIST of the group.
-
-/unauth [Username or Reply to a Message] 
-- Remove a user from AUTH LIST of the group.
-
-/authusers 
-- Check AUTH LIST of the group.
+- /auth [Username or Reply to a Message]: Add a user to AUTH LIST of the group.
+- /unauth [Username or Reply to a Message]: Remove a user from AUTH LIST of the group.
+- /authusers: Check AUTH LIST of the group.
 """
 
 
