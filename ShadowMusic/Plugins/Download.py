@@ -21,14 +21,9 @@ flex = {}
 __MODULE__ = "Global Ban"
 __HELP__ = """
 
-**Note:**
-Only for Sudo Users.
-
-/gban [Username or Reply to a user]
-- Ban a user globally in Bot's Served Chats and prevents user from using bot commands.
-
-/ungban [Username or Reply to a user]
-- Remove a user from Bot's GBan List.
+**Only for Sudo Users**
+- /gban [Username or Reply to a user]: Ban a user globally in Bot's Served Chats and prevents user from using bot commands.
+- /ungban [Username or Reply to a user]: Remove a user from Bot's GBan List.
 """
 
 
@@ -38,11 +33,14 @@ async def closed(_, query: CallbackQuery):
     await query.answer("Closed")
 
 
-@app.on_callback_query(filters.regex(pattern=r"down"))
+@app.on_callback_query(filters.regex(pattern=r"failed"))
 async def down(_, CallbackQuery):
-    await CallbackQuery.answer()
+    await CallbackQuery.answer("Download or Upload Failed :(")
 
-
+@app.on_callback_query(filters.regex(pattern=r"up_n_down"))
+async def up_n_down(_, CallbackQuery):
+    await CallbackQuery.answer("Wait...")
+    
 @app.on_callback_query(filters.regex(pattern=r"gets"))
 async def getspy(_, CallbackQuery):
     await CallbackQuery.answer()
@@ -65,11 +63,11 @@ async def ytdata(_, CallbackQuery):
 
 
 inl = InlineKeyboardMarkup(
-    [[InlineKeyboardButton(text="Downloading......", callback_data=f"down")]]
+    [[InlineKeyboardButton(text="Downloading......", callback_data=f"up_n_down")]]
 )
 
 upl = InlineKeyboardMarkup(
-    [[InlineKeyboardButton(text="Uploading......", callback_data=f"down")]]
+    [[InlineKeyboardButton(text="Uploading......", callback_data=f"up_n_down")]]
 )
 
 
@@ -77,7 +75,7 @@ def inl_mark(videoid, user_id):
     buttons = [
         [
             InlineKeyboardButton(
-                text="Download or Upload Failed......", callback_data=f"down"
+                text="Download or Upload Failed......", callback_data=f"failed"
             )
         ],
         [
