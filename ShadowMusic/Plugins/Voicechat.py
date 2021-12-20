@@ -5,8 +5,7 @@ import subprocess
 from sys import version as pyver
 
 from pyrogram import Client, filters
-from pyrogram.types import (InlineKeyboardMarkup, InputMediaPhoto, Message,
-                            Voice)
+from pyrogram.types import (InlineKeyboardMarkup, InputMediaPhoto, Message, Voice)
 
 from config import get_queue
 from ShadowMusic import SUDOERS, app, db_mem, ASS_CLI_1, ASS_CLI_2, ASS_CLI_3, ASS_CLI_4, ASS_CLI_5
