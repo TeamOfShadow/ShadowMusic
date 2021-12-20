@@ -9,10 +9,7 @@ from ShadowMusic import BOT_ID, SUDOERS, app
 
 __MODULE__ = "Speedtest"
 __HELP__ = """
-
-/speedtest 
-- Check Server Latency and Speed.
-
+- /speedtest: Check Server Latency and Speed.
 """
 
 
