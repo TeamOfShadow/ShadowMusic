@@ -4,38 +4,27 @@ import shutil
 import subprocess
 from sys import version as pyver
 
-from config import get_queue
 from pyrogram import Client, filters
-from pyrogram.types import Message
-
-from ShadowMusic import SUDOERS, app, db_mem, userbot
-from ShadowMusic.Database import get_active_chats, is_active_chat
-from ShadowMusic.Decorators.checker import checker, checkerCB
-from ShadowMusic.Inline import primary_markup
-
 from pyrogram.types import (InlineKeyboardMarkup, InputMediaPhoto, Message,
                             Voice)
+
+from config import get_queue
+from ShadowMusic import SUDOERS, app, db_mem, ASS_CLI_1, ASS_CLI_2, ASS_CLI_3, ASS_CLI_4, ASS_CLI_5
+from ShadowMusic.Database import (get_active_chats, get_assistant, is_active_chat,
+                                  save_assistant)
+from ShadowMusic.Decorators.checker import checker, checkerCB
+from ShadowMusic.Inline import primary_markup, leaveall_markup
+from ShadowMusic.Utilities.assistant import get_assistant_details, random_assistant
 
 loop = asyncio.get_event_loop()
 
 __MODULE__ = "Join/Leave"
 __HELP__ = """
-
-**Note:**
-Only for Sudo Users
-
-
-/joinassistant [Chat Username or Chat ID]
-- Join assistant to a group.
-
-/leaveassistant [Chat Username or Chat ID]
-- Assistant will leave the particular group.
-
-/leavebot [Chat Username or Chat ID]
-- Bot will leave the particular chat.
-
+**Only for Sudo Users**
+- /joinassistant [Chat Username or Chat ID]: Join assistant to a group.
+- /leaveassistant [Chat Username or Chat ID]: Assistant will leave the particular group.
+- /leavebot [Chat Username or Chat ID]: Bot will leave the particular chat.
 """
-
 
 
 @app.on_callback_query(filters.regex("pr_go_back_timer"))
@@ -49,10 +38,10 @@ async def pr_go_back_timer(_, CallbackQuery):
             dur_left = db_mem[CallbackQuery.message.chat.id]["left"]
             duration_min = db_mem[CallbackQuery.message.chat.id]["total"]
             buttons = primary_markup(videoid, user_id, dur_left, duration_min)
-            await CallbackQuery.edit_message_reply_markup(reply_markup=InlineKeyboardMarkup(buttons))
-             
-    
-    
+            await CallbackQuery.edit_message_reply_markup(
+                reply_markup=InlineKeyboardMarkup(buttons)
+            )
+
 
 @app.on_callback_query(filters.regex("timer_checkup_markup"))
 async def timer_checkup_markup(_, CallbackQuery):
@@ -167,7 +156,23 @@ async def basffy(_, message):
         return
     chat = message.text.split(None, 2)[1]
     try:
-        await userbot.join_chat(chat)
+        chat_id = (await app.get_chat(chat)).id
+    except:
+        return await message.reply_text(
+            "Add Bot to this Chat First.. Unknown Chat for the bot"
+        )
+    _assistant = await get_assistant(chat_id, "assistant")
+    if not _assistant:
+        return await message.reply_text(
+            "No Pre-Saved Assistant Found.\n\nYou can set Assistant Via /play inside {Chat}'s Group"
+        )
+    else:
+        ran_ass = _assistant["saveassistant"]
+    ASS_ID, ASS_NAME, ASS_USERNAME, ASS_ACC = await get_assistant_details(
+        ran_ass
+    )
+    try:
+        await ASS_ACC.join_chat(chat_id)
     except Exception as e:
         await message.reply_text(f"Failed\n**Possible reason could be**:{e}")
         return
@@ -200,31 +205,88 @@ async def baujaf(_, message):
         return
     chat = message.text.split(None, 2)[1]
     try:
-        await userbot.leave_chat(chat)
+        chat_id = (await app.get_chat(chat)).id
+    except:
+        return await message.reply_text(
+            "Add Bot to this Chat First.. Unknown Chat for the bot"
+        )
+    _assistant = await get_assistant(chat, "assistant")
+    if not _assistant:
+        return await message.reply_text(
+            "No Pre-Saved Assistant Found.\n\nYou can set Assistant Via /play inside {Chat}'s Group"
+        )
+    else:
+        ran_ass = _assistant["saveassistant"]
+    ASS_ID, ASS_NAME, ASS_USERNAME, ASS_ACC = await get_assistant_details(
+        ran_ass
+    )
+    try:
+        await ASS_ACC.leave_chat(chat_id)
     except Exception as e:
         await message.reply_text(f"Failed\n**Possible reason could be**:{e}")
         return
     await message.reply_text("Left.")
     
-@app.on_message(filters.command(["leaveall"]))
+
+@app.on_message(filters.command(["leaveall"]) & filters.private)
 async def bye(client, message):
+    user_id = message.from_user.id
+    sed = await message.reply("**Processing...**")
     if message.from_user.id in SUDOERS:
-        left = 0
-        failed = 0
-        lol = await message.reply("Assistant Leaving all chats")
-        async for dialog in userbot.iter_dialogs():
-            try:
-                await userbot.leave_chat(dialog.chat.id)
-                left = left + 1
-                await lol.edit(
-                    f"Assistant leaving... Left: {left} chats. Failed: {failed} chats."
-                )
-            except:
-                failed = failed + 1
-                await lol.edit(
-                    f"Assistant leaving... Left: {left} chats. Failed: {failed} chats."
-                )
-            await asyncio.sleep(0.7)
-        await client.send_message(
-            message.chat.id, f"Left {left} chats. Failed {failed} chats."
-        )
+        buttons = leaveall_markup(user_id)
+        await sed.edit("Choose the assistant...", reply_markup=InlineKeyboardMarkup(buttons))
+    else:
+        return await sed.edit("You aren't allowed")
+
+
+@app.on_callback_query(filters.regex(pattern=r"^(Assistant_1|Assistant_2|Assistant_3|Assistant_4|Assistant_5)$"))
+async def leaveall(b, cb):
+
+    data = cb.matches[0].group(1)
+      
+    if data == "Assistant_1":
+      userbot = ASS_CLI_1
+      text = "Assistant 1 Leaving all chats"
+      await cb.answer(f"{text}")
+    
+    if data == "Assistant_2":
+      userbot = ASS_CLI_2
+      text = "Assistant 2 Leaving all chats"
+      await cb.answer(f"{text}")
+    
+    if data == "Assistant_3":
+      userbot = ASS_CLI_3
+      text = "Assistant 3 Leaving all chats"
+      await cb.answer(f"{text}")
+    
+    if data == "Assistant_4":
+      userbot = ASS_CLI_4
+      text = "Assistant 4 Leaving all chats"
+      await cb.answer(f"{text}")
+    
+    if data == "Assistant_5":
+      userbot = ASS_CLI_5
+      text = "Assistant 5 Leaving all chats"
+      await cb.answer(f"{text}")
+    
+    await cb.message.delete()    
+    lol = await cb.message.reply(f"{text}")
+    
+    left = 0
+    failed = 0
+        
+    async for dialog in userbot.iter_dialogs():
+        try:
+            await userbot.leave_chat(dialog.chat.id)
+            left = left + 1
+            await lol.edit(
+                f"{text[:11]}... Left: {left} chats. Failed: {failed} chats."
+            )
+        except:
+            failed = failed + 1
+            await lol.edit(
+                f"{text[:11]}... Left: {left} chats. Failed: {failed} chats."
+            )
+        await asyncio.sleep(0.7)
+        await lol.delete()
+        await client.send_message(cb.message.chat.id, f"Left {left} chats. Failed {failed} chats.")
