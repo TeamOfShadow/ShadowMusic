@@ -11,10 +11,8 @@ from ShadowMusic.Utilities.ping import get_readable_time
 
 __MODULE__ = "Ping"
 __HELP__ = """
-
-/ping - Check if Bot is alive or not.
+- /ping: Check if Bot is alive or not.
 """
-
 
 async def bot_sys_stats():
     bot_uptime = int(time.time() - boottime)
