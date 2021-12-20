@@ -6,23 +6,11 @@ from ShadowMusic.Database import blacklist_chat, blacklisted_chats, whitelist_ch
 
 __MODULE__ = "Blacklist"
 __HELP__ = """
+- /blacklistedchat: Check Blacklisted Chats of Bot.
 
-
-/blacklistedchat 
-- Check Blacklisted Chats of Bot.
-
-
-**Note:**
-Only for Sudo Users.
-
-
-/blacklistchat [CHAT_ID] 
-- Blacklist any chat from using Music Bot
-
-
-/whitelistchat [CHAT_ID] 
-- Whitelist any blacklisted chat from using Music Bot
-
+**Only for Sudo Users**
+- /blacklistchat [CHAT_ID]: Blacklist any chat from using Music Bot
+- /whitelistchat [CHAT_ID]: Whitelist any blacklisted chat from using Music Bot
 """
 
 
