@@ -18,13 +18,7 @@ loop = asyncio.get_event_loop()
 
 __MODULE__ = "Song"
 __HELP__ = """
-
-
-/song [Youtube URL or Search Query] 
-- Download the particular query in audio or video format.
-
-
-
+/song [Youtube URL or Search Query]: Download the particular query in audio or video format.
 """
 
 
