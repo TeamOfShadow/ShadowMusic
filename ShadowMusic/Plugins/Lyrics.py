@@ -1,5 +1,5 @@
-import re
 import os
+import re
 
 import lyricsgenius
 from pyrogram import Client, filters
@@ -10,13 +10,10 @@ from ShadowMusic import MUSIC_BOT_NAME, app
 
 __MODULE__ = "Lyrics"
 __HELP__ = """
-
-/Lyrics [Music Name]
-- Searches Lyrics for the particular Music on web.
+- /lyrics [Music Name]: Searches Lyrics for the particular Music on web.
 
 **Note**:
 Inline button of Lyrics has some bugs. Searches only 50% results. You can use command instead if you want lyrics for any playing music.
-
 """
 
 
@@ -54,15 +51,12 @@ async def lyricssex(_, CallbackQuery):
     usr = f"[{CallbackQuery.from_user.first_name}](tg://user?id={userid})"
     xxx = f"""
 **Lyrics Search Powered By {MUSIC_BOT_NAME}**
-
 **Searched By:-** {usr}
 **Searched Song:-** __{title}__
-
 **Found Lyrics For:-** __{S.title}__
 **Artist:-** {S.artist}
 
 **__Lyrics:__**
-
 {S.lyrics}"""
     if len(xxx) > 4096:
         filename = "lyrics.txt"
@@ -92,13 +86,10 @@ async def lrsearch(_, message: Message):
         return await m.edit("Lyrics not found :(")
     xxx = f"""
 **Lyrics Search Powered By {MUSIC_BOT_NAME}**
-
 **Searched Song:-** __{query}__
 **Found Lyrics For:-** __{S.title}__
 **Artist:-** {S.artist}
-
 **__Lyrics:__**
-
 {S.lyrics}"""
     if len(xxx) > 4096:
         await m.delete()
@@ -113,4 +104,3 @@ async def lrsearch(_, message: Message):
         os.remove(filename)
     else:
         await m.edit(xxx)
-    
