@@ -13,7 +13,7 @@ from ShadowMusic import BOT_USERNAME, MUSIC_BOT_NAME, app, db_mem
 from ShadowMusic.Core.PyTgCalls import Queues
 from ShadowMusic.Core.PyTgCalls.Converter import convert
 from ShadowMusic.Core.PyTgCalls.Downloader import download
-from ShadowMusic.Core.PyTgCalls.Yukki import (pause_stream, resume_stream,
+from ShadowMusic.Core.PyTgCalls.Shadow import (pause_stream, resume_stream,
                                               skip_stream, stop_stream)
 from ShadowMusic.Database import (is_active_chat, is_music_playing, music_off,
                                   music_on, remove_active_chat)
