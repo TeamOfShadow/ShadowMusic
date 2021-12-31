@@ -16,7 +16,7 @@ from ShadowMusic import (ASS_CLI_1, ASS_CLI_2, ASS_CLI_3, ASS_CLI_4, ASS_CLI_5,
                          ASSNAME3, ASSNAME4, ASSNAME5, BOT_ID, BOT_NAME, app)
 from ShadowMusic.Core.Logger.Log import (startup_delete_last, startup_edit_last,
                                          startup_send_new)
-from ShadowMusic.Core.PyTgCalls.Yukki import (pytgcalls1, pytgcalls2, pytgcalls3,
+from ShadowMusic.Core.PyTgCalls.Shadow import (pytgcalls1, pytgcalls2, pytgcalls3,
                                               pytgcalls4, pytgcalls5)
 from ShadowMusic.Database import get_active_chats, get_sudoers, remove_active_chat
 from ShadowMusic.Inline import private_panel
@@ -102,7 +102,7 @@ async def initiate_bot():
     try:
         await ASS_CLI_1.send_message(
             LOG_GROUP_ID,
-            "<b>✅ Assistant Client 1️⃣ successfully!</b>",
+            "<b>✅ Assistant Client 1️⃣ started successfully!</b>",
         )
     except Exception as e:
         print(
@@ -113,12 +113,13 @@ async def initiate_bot():
     try:
         await ASS_CLI_1.join_chat("ShadowSupport_Official")
         await ASS_CLI_1.join_chat("ShadowBotUpdates")
+        await ASS_CLI_1.join_chat("ShadowBotChat")
     except:
         pass
     try:
         await ASS_CLI_2.send_message(
             LOG_GROUP_ID,
-            "<b>✅ Assistant Client 2️⃣ successfully!</b>",
+            "<b>✅ Assistant Client 2️⃣ started successfully!</b>",
         )
     except Exception as e:
         print(
@@ -129,12 +130,13 @@ async def initiate_bot():
     try:
         await ASS_CLI_2.join_chat("ShadowSupport_Official")
         await ASS_CLI_2.join_chat("ShadowBotUpdates")
+        await ASS_CLI_2.join_chat("ShadowBotChat")
     except:
         pass
     try:
         await ASS_CLI_3.send_message(
             LOG_GROUP_ID,
-            "<b>✅ Assistant Client 3️⃣ successfully!</b>",
+            "<b>✅ Assistant Client 3️⃣ started successfully!</b>",
         )
     except Exception as e:
         print(
@@ -145,12 +147,13 @@ async def initiate_bot():
     try:
         await ASS_CLI_3.join_chat("ShadowSupport_Official")
         await ASS_CLI_3.join_chat("ShadowBotUpdates")
+        await ASS_CLI_3.join_chat("ShadowBotChat")
     except:
         pass
     try:
         await ASS_CLI_4.send_message(
             LOG_GROUP_ID,
-            "<b>✅ Assistant Client 4️⃣ successfully!</b>",
+            "<b>✅ Assistant Client 4️⃣ started successfully!</b>",
         )
     except Exception as e:
         print(
@@ -161,12 +164,13 @@ async def initiate_bot():
     try:
         await ASS_CLI_4.join_chat("ShadowSupport_Official")
         await ASS_CLI_4.join_chat("ShadowBotUpdates")
+        await ASS_CLI_4.join_chat("ShadowBotChat")
     except:
         pass
     try:
         await ASS_CLI_5.send_message(
             LOG_GROUP_ID,
-            "<b>✅ Assistant Client 5️⃣ successfully!</b>",
+            "<b>✅ Assistant Client 5️⃣ started successfully!</b>",
         )
     except Exception as e:
         print(
@@ -177,6 +181,7 @@ async def initiate_bot():
     try:
         await ASS_CLI_5.join_chat("ShadowSupport_Official")
         await ASS_CLI_5.join_chat("ShadowBotUpdates")
+        await ASS_CLI_5.join_chat("ShadowBotChat")
     except:
         pass
     console.print(f"\n┌[red] Bot Started as {BOT_NAME}!")
