@@ -109,10 +109,8 @@ async def initiate_bot():
         return
     try:
         await userbot.join_chat("ShadowBotUpdates")
-    except:
-        pass
-    try:
         await userbot.join_chat("ShadowSupport_Official")
+        await userbot.join_chat("ShadowBotChat")
     except:
         pass  
       
@@ -132,20 +130,20 @@ I'm Telegram Voice Chat Audio with some useful features.
 All commands can be used with: / """
 
 
-#@app.on_message(filters.command("help") & filters.private)
-#async def help_command(_, message):
-#    text, keyboard = await help_parser(message.from_user.mention)
-#    await app.send_message(message.chat.id, text, reply_markup=keyboard)
+@app.on_message(filters.command("help") & filters.private)
+async def help_command(_, message):
+    text, keyboard = await help_parser(message.from_user.mention)
+    await app.send_message(message.chat.id, text, reply_markup=keyboard)
 
 
 @app.on_message(filters.command("start") & filters.private)
 async def start_command(_, message):
-#    if len(message.text.split()) == 1:
-#        out = private_panel()
-#        await message.reply_text(
-#        home_text_pm,
-#        reply_markup=InlineKeyboardMarkup(out[1]),
-#    )
+    if len(message.text.split()) == 1:
+        out = private_panel()
+        await message.reply_text(
+        home_text_pm,
+        reply_markup=InlineKeyboardMarkup(out[1]),
+    )
     if len(message.text.split()) > 1:
         name = (message.text.split(None, 1)[1]).lower()
         if name[0] == "sudo":
@@ -246,92 +244,90 @@ async def deshadeeththisarana(_, CallbackQuery):
     await CallbackQuery.message.edit(text, reply_markup=keyboard)
 
 
-#@app.on_callback_query(filters.regex(r"help_(.*?)"))
-#async def help_button(client, query):
-#    home_match = re.match(r"help_home\((.+?)\)", query.data)
-#    mod_match = re.match(r"help_module\((.+?)\)", query.data)
-#    prev_match = re.match(r"help_prev\((.+?)\)", query.data)
-#    next_match = re.match(r"help_next\((.+?)\)", query.data)
-#    back_match = re.match(r"help_back", query.data)
-#    create_match = re.match(r"help_create", query.data)
-#    top_text = f"""Hello {query.from_user.first_name},
-#
-#Click on the buttons for more information.
-#
-#All commands can be used with: /
-# """
-#    if mod_match:
-#        module = mod_match.group(1)
-#        text = (
-#            "{} **{}**:\n".format(
-#                "Here is the help for", HELPABLE[module].__MODULE__
-#            )
-#            + HELPABLE[module].__HELP__
-#        )
-#        key = InlineKeyboardMarkup(
-#            [
-#                [
-#                    InlineKeyboardButton(
-#                        text="↪️ Back", callback_data="help_back"
-#                    ),
-#                    InlineKeyboardButton(
-#                        text="🔄 Close", callback_data="close"
-#                    ),
-#                ],
-#            ]
-#        )
+@app.on_callback_query(filters.regex(r"help_(.*?)"))
+async def help_button(client, query):
+    home_match = re.match(r"help_home\((.+?)\)", query.data)
+    mod_match = re.match(r"help_module\((.+?)\)", query.data)
+    prev_match = re.match(r"help_prev\((.+?)\)", query.data)
+    next_match = re.match(r"help_next\((.+?)\)", query.data)
+    back_match = re.match(r"help_back", query.data)
+    create_match = re.match(r"help_create", query.data)
+    top_text = f"""Hello {query.from_user.first_name},
 
-#        await query.message.edit(
-#            text=text,
-#            reply_markup=key,
-#            disable_web_page_preview=True,
-#        )
-#    elif home_match:
-#        out = private_panel()
-#        await app.send_message(
-#            query.from_user.id,
-#            text=home_text_pm,
-#            reply_markup=InlineKeyboardMarkup(out[1]),
-#        )
-#        await query.message.delete()
-#    elif prev_match:
-#        curr_page = int(prev_match.group(1))
-#        await query.message.edit(
-#            text=top_text,
-#            reply_markup=InlineKeyboardMarkup(
-#                paginate_modules(curr_page - 1, HELPABLE, "help")
-#            ),
-#            disable_web_page_preview=True,
-#        )
-#
-#    elif next_match:
-#        next_page = int(next_match.group(1))
-#        await query.message.edit(
-#            text=top_text,
-#            reply_markup=InlineKeyboardMarkup(
-#                paginate_modules(next_page + 1, HELPABLE, "help")
-#            ),
-#            disable_web_page_preview=True,
-#        )
-#
-#    elif back_match:
-#        await query.message.edit(
-#            text=top_text,
-#            reply_markup=InlineKeyboardMarkup(
-#                paginate_modules(0, HELPABLE, "help")
-#            ),
-#            disable_web_page_preview=True,
-#        )
-#
-#    elif create_match:
-#        text, keyboard = await help_parser(query)
-#        await query.message.edit(
-#            text=text,
-#            reply_markup=keyboard,
-#            disable_web_page_preview=True,
-#        )
-#
-#    return await client.answer_callback_query(query.id)
+Click on the buttons for more information.
+
+All commands can be used with: /
+ """
+    if mod_match:
+        module = mod_match.group(1)
+        text = (
+            "{} **{}**:\n".format(
+                "Here is the help for", HELPABLE[module].__MODULE__
+            )
+            + HELPABLE[module].__HELP__
+        )
+        key = InlineKeyboardMarkup(
+            [
+                [
+                    InlineKeyboardButton(
+                        text="↪️ Back", callback_data="help_back"
+                    ),
+                    InlineKeyboardButton(
+                        text="🔄 Close", callback_data="close"
+                    ),
+                ],
+            ]
+        )
+        await query.message.edit(
+            text=text,
+            reply_markup=key,
+            disable_web_page_preview=True,
+        )
+    elif home_match:
+        out = private_panel()
+        await app.send_message(
+            query.from_user.id,
+            text=home_text_pm,
+            reply_markup=InlineKeyboardMarkup(out[1]),
+        )
+        await query.message.delete()
+    elif prev_match:
+        curr_page = int(prev_match.group(1))
+        await query.message.edit(
+            text=top_text,
+            reply_markup=InlineKeyboardMarkup(
+                paginate_modules(curr_page - 1, HELPABLE, "help")
+            ),
+            disable_web_page_preview=True,
+        )
+
+    elif next_match:
+        next_page = int(next_match.group(1))
+        await query.message.edit(
+            text=top_text,
+            reply_markup=InlineKeyboardMarkup(
+                paginate_modules(next_page + 1, HELPABLE, "help")
+            ),
+            disable_web_page_preview=True,
+        )
+
+    elif back_match:
+        await query.message.edit(
+            text=top_text,
+            reply_markup=InlineKeyboardMarkup(
+                paginate_modules(0, HELPABLE, "help")
+            ),
+            disable_web_page_preview=True,
+        )
+
+    elif create_match:
+        text, keyboard = await help_parser(query)
+        await query.message.edit(
+            text=text,
+            reply_markup=keyboard,
+            disable_web_page_preview=True,
+        )
+    return await client.answer_callback_query(query.id)
 
 
 if __name__ == "__main__":
