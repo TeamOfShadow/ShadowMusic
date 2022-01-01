@@ -89,7 +89,6 @@ $ pip3 install pyrogram TgCrypto
 $ python3 gen_session.py
 ```
 
-
 <h2 align="center">
    Config Vars
 </h2>
