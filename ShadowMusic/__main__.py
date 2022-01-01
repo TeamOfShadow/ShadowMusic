@@ -211,7 +211,7 @@ I'm Telegram Voice Chat Audio with some useful features.
 All commands can be used with: / """
 
 
-@app.on_message(filters.command("vchelp") & filters.private)
+@app.on_message(filters.command("help") & filters.private)
 async def help_command(_, message):
     text, keyboard = await help_parser(message.from_user.mention)
     await app.send_message(message.chat.id, text, reply_markup=keyboard)
@@ -239,14 +239,14 @@ async def start_command(_, message):
                 await message.reply_text("No Sudo Users")
             else:
                 await message.reply_text(text)
-        #if name == "help":
-        #    text, keyboard = await help_parser(message.from_user.mention)
-        #    await message.delete()
-        #    return await app.send_text(
-        #        message.chat.id,
-        #        text,
-        #        reply_markup=keyboard,
-        #    )
+        if name == "help":
+            text, keyboard = await help_parser(message.from_user.mention)
+            await message.delete()
+            return await app.send_text(
+                message.chat.id,
+                text,
+                reply_markup=keyboard,
+            )
         if name[0] == "i":
             m = await message.reply_text("🔎 Fetching Info...!")
             query = (str(name)).replace("info_", "", 1)
@@ -294,11 +294,11 @@ async def start_command(_, message):
                 parse_mode="markdown",
                 reply_markup=key,
             )
-    #out = private_panel()
-    return #await message.reply_text(
-        #home_text_pm,
-        #reply_markup=InlineKeyboardMarkup(out[1]),
-    #)
+    out = private_panel()
+    return await message.reply_text(
+        home_text_pm,
+        reply_markup=InlineKeyboardMarkup(out[1]),
+    )
 
 
 async def help_parser(name, keyboard=None):
@@ -356,11 +356,11 @@ All commands can be used with: /
             ]
         )
 
-        #await query.message.edit(
-        #    text=text,
-        #    reply_markup=key,
-        #    disable_web_page_preview=True,
-        #)
+        await query.message.edit(
+            text=text,
+            reply_markup=key,
+            disable_web_page_preview=True,
+        )
     elif home_match:
         out = private_panel()
         await app.send_message(
