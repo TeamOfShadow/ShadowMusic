@@ -47,7 +47,7 @@ def AssistantAdd(mystic):
                     inv_lnk = inv_lnk.replace("https://t.me/+","https://t.me/joinchat/")
                     await asyncio.sleep(10)
                     await ASS_ACC.join_chat(inv_lnk)
-                    await message.reply("Shadow Helper Joined Successfully") 
+                    await message.reply(f"{ASS_NAME} Joined Successfully") 
                 except UserAlreadyParticipant:
                     pass
                 except Exception as e:
