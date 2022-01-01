@@ -27,7 +27,9 @@
 
 <h3 align="left">
     Full Music Help Guide: <a href="https://telegra.ph/Shadow-Music-Help-Guide-01-01">Here</a>
-    
+</h3>
+
+<h3 align="left">
     Multi-Assistant Repo: <a href="https://github.com/TeamOfShadow/Shadow-Music/tree/Multi-Assistant">Here</a>
 </h3>    
 
