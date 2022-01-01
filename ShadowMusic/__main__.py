@@ -17,7 +17,7 @@ from ShadowMusic import (ASS_CLI_1, ASS_CLI_2, ASS_CLI_3, ASS_CLI_4, ASS_CLI_5,
 from ShadowMusic.Core.Logger.Log import (startup_delete_last, startup_edit_last,
                                          startup_send_new)
 from ShadowMusic.Core.PyTgCalls.Shadow import (pytgcalls1, pytgcalls2, pytgcalls3,
-                                              pytgcalls4, pytgcalls5)
+                                               pytgcalls4, pytgcalls5)
 from ShadowMusic.Database import get_active_chats, get_sudoers, remove_active_chat
 from ShadowMusic.Inline import private_panel
 from ShadowMusic.Plugins import ALL_MODULES
