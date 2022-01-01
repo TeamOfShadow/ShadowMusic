@@ -12,7 +12,7 @@ def url_markup(videoid, duration, user_id, query, query_type):
                 callback_data=f"slider B|{query_type}|{query}|{user_id}",
             ),
             InlineKeyboardButton(
-                text="Play Now",
+                text="🎶 Play Now",
                 callback_data=f"ShadowMusic {videoid}|{duration}|{user_id}",
             ),
             InlineKeyboardButton(
@@ -38,7 +38,7 @@ def url_markup2(videoid, duration, user_id):
     buttons = [
         [
             InlineKeyboardButton(
-                text="▶️ Play Now",
+                text="🎶 Play Now",
                 callback_data=f"ShadowMusic {videoid}|{duration}|{user_id}",
             ),
             InlineKeyboardButton(
@@ -169,7 +169,7 @@ def secondary_markup(videoid, user_id):
             InlineKeyboardButton(
                 text="🔎 Search Lyrics",
                 callback_data=f"lyrics {videoid}|{user_id}",
-            )
+            ),
             InlineKeyboardButton(
                 text="🔗 More Menu", callback_data=f"other {videoid}|{user_id}"
             ),
@@ -200,7 +200,7 @@ def primary_markup(videoid, user_id, current_time, total_time):
             InlineKeyboardButton(
                 text="🔎 Search Lyrics",
                 callback_data=f"lyrics {videoid}|{user_id}",
-            )
+            ),
             InlineKeyboardButton(
                 text="🔗 More Menu", callback_data=f"other {videoid}|{user_id}"
             ),
@@ -228,7 +228,7 @@ def timer_markup(videoid, user_id, current_time, total_time):
             InlineKeyboardButton(
                 text="🔎 Search Lyrics",
                 callback_data=f"lyrics {videoid}|{user_id}",
-            )
+            ),
             InlineKeyboardButton(
                 text="🔗 More Menu", callback_data=f"other {videoid}|{user_id}"
             ),
