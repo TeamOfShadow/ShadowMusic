@@ -21,9 +21,14 @@
 <p align="center">
     A Support Group, Updates Channel and ready-to-use running instance of this bot can be found on Telegram <br>
     <a href="https://t.me/Mr_Shadow_Robot"> Bot </a> |
-    <a href="https://t.me/ShadowSupport_Official"> Support Group </a>
+    <a href="https://t.me/ShadowSupport_Official"> Support Group </a> |
     <a href="https://t.me/ShadowBotUpdates"> Updates Channel </a>
 </p>
+
+<p align="left">
+    Full Music Help Guide <br>
+    <a href="https://telegra.ph/Shadow-Music-Help-Guide-01-01">Here</a>
+</p>    
 
 <h2 align="center">
    Requirements
