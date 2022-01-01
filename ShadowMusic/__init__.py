@@ -15,7 +15,7 @@ from rich.table import Table
 
 from ShadowMusic.Core.Clients.cli import app, userbot
 from ShadowMusic.Core.Logger.Log import (startup_delete_last, startup_edit_last,
-                                   startup_send_new)
+                                         startup_send_new)
 from ShadowMusic.Utilities.changers import time_to_seconds
 
 loop = asyncio.get_event_loop()
