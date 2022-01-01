@@ -25,10 +25,9 @@
     <a href="https://t.me/ShadowBotUpdates"> Updates Channel </a>
 </p>
 
-<p align="left">
-    Full Music Help Guide <br>
-    <a href="https://telegra.ph/Shadow-Music-Help-Guide-01-01">Here</a>
-</p>    
+<h3 align="left">
+    Full Music Help Guide: <a href="https://telegra.ph/Shadow-Music-Help-Guide-01-01">Here</a>
+</h3>    
 
 <h2 align="center">
    Requirements
