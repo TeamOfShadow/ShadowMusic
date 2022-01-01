@@ -5,16 +5,12 @@ from pyrogram.types import (CallbackQuery, InlineKeyboardButton,
 def check_markup(user_name, user_id, videoid):
     buttons = [
         [
-            InlineKeyboardButton(
-                text=f"Group's Playlist",
-                callback_data=f"playlist_check {user_id}|Group|{videoid}",
-            ),
-            InlineKeyboardButton(
-                text=f"{user_name[:10]}'s Playlist",
-                callback_data=f"playlist_check {user_id}|Personal|{videoid}",
-            ),
+            InlineKeyboardButton(text=f"Group's Playlist", callback_data=f"playlist_check {user_id}|Group|{videoid}"),
+            InlineKeyboardButton(text=f"{user_name[:10]}'s Playlist", callback_data=f"playlist_check {user_id}|Personal|{videoid}"),
         ],
-        [InlineKeyboardButton(text="🗑 Close Menu", callback_data="close")],
+        [
+            InlineKeyboardButton(text="🗑 Close Menu", callback_data="close")
+        ],
     ]
     return buttons
 
@@ -22,16 +18,12 @@ def check_markup(user_name, user_id, videoid):
 def playlist_markup(user_name, user_id, videoid):
     buttons = [
         [
-            InlineKeyboardButton(
-                text=f"Group's Playlist",
-                callback_data=f"show_genre {user_id}|Group|{videoid}",
-            ),
-            InlineKeyboardButton(
-                text=f"{user_name[:10]}'s Playlist",
-                callback_data=f"show_genre {user_id}|Personal|{videoid}",
-            ),
+            InlineKeyboardButton(text=f"Group's Playlist", callback_data=f"show_genre {user_id}|Group|{videoid}"),
+            InlineKeyboardButton(text=f"{user_name[:10]}'s Playlist", callback_data=f"show_genre {user_id}|Personal|{videoid}"),
         ],
-        [InlineKeyboardButton(text="🗑 Close Menu", callback_data="close")],
+        [
+            InlineKeyboardButton(text="🗑 Close Menu", callback_data="close")
+        ],
     ]
     return buttons
 
@@ -39,50 +31,23 @@ def playlist_markup(user_name, user_id, videoid):
 def play_genre_playlist(user_id, type, videoid):
     buttons = [
         [
-            InlineKeyboardButton(
-                text=f"Bollywood",
-                callback_data=f"play_playlist {user_id}|{type}|Bollywood",
-            ),
-            InlineKeyboardButton(
-                text=f"Hollywood",
-                callback_data=f"play_playlist {user_id}|{type}|Hollywood",
-            ),
+            InlineKeyboardButton(text=f"Bollywood", callback_data=f"play_playlist {user_id}|{type}|Bollywood"),
+            InlineKeyboardButton(text=f"Hollywood", callback_data=f"play_playlist {user_id}|{type}|Hollywood"),
         ],
         [
-            InlineKeyboardButton(
-                text=f"Party",
-                callback_data=f"play_playlist {user_id}|{type}|Party",
-            ),
-            InlineKeyboardButton(
-                text=f"Lofi",
-                callback_data=f"play_playlist {user_id}|{type}|Lofi",
-            ),
+            InlineKeyboardButton(text=f"Party", callback_data=f"play_playlist {user_id}|{type}|Party"),
+            InlineKeyboardButton(text=f"Lofi", callback_data=f"play_playlist {user_id}|{type}|Lofi"),
         ],
         [
-            InlineKeyboardButton(
-                text=f"Sad",
-                callback_data=f"play_playlist {user_id}|{type}|Sad",
-            ),
-            InlineKeyboardButton(
-                text=f"Weeb",
-                callback_data=f"play_playlist {user_id}|{type}|Weeb",
-            ),
+            InlineKeyboardButton(text=f"Sad", callback_data=f"play_playlist {user_id}|{type}|Sad"),
+            InlineKeyboardButton(text=f"Weeb", callback_data=f"play_playlist {user_id}|{type}|Weeb"),
         ],
         [
-            InlineKeyboardButton(
-                text=f"Punjabi",
-                callback_data=f"play_playlist {user_id}|{type}|Punjabi",
-            ),
-            InlineKeyboardButton(
-                text=f"Others",
-                callback_data=f"play_playlist {user_id}|{type}|Others",
-            ),
+            InlineKeyboardButton(text=f"Punjabi", callback_data=f"play_playlist {user_id}|{type}|Punjabi"),
+            InlineKeyboardButton(text=f"Others", callback_data=f"play_playlist {user_id}|{type}|Others"),
         ],
         [
-            InlineKeyboardButton(
-                text="⬅️ Go Back",
-                callback_data=f"main_playlist {videoid}|{type}|{user_id}",
-            ),
+            InlineKeyboardButton(text="⬅️ Go Back", callback_data=f"main_playlist {videoid}|{type}|{user_id}"),
             InlineKeyboardButton(text="🗑 Close Menu", callback_data="close"),
         ],
     ]
