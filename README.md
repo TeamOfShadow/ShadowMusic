@@ -21,9 +21,13 @@
 <p align="center">
     A Support Group, Updates Channel and ready-to-use running instance of this bot can be found on Telegram <br>
     <a href="https://t.me/Mr_Shadow_Robot"> Bot </a> |
-    <a href="https://t.me/ShadowSupport_Official"> Support Group </a>
+    <a href="https://t.me/ShadowSupport_Official"> Support Group </a> |
     <a href="https://t.me/ShadowBotUpdates"> Updates Channel </a>
 </p>
+
+<h3 align="left">
+    Full Music Help Guide: <a href="https://telegra.ph/Shadow-Music-Help-Guide-01-01">Here</a>
+</h3>    
 
 <h2 align="center">
    Requirements
@@ -65,7 +69,6 @@ $ bash start
 <a href="https://dashboard.heroku.com/new?template=https://github.com/TeamOfShadow/ShadowMusic"><img src="https://img.shields.io/badge/Deploy%20To%20Heroku-blueviolet?style=for-the-badge&logo=heroku" width="250"/</a>
 </p>
 
-<a href="https://dashboard.heroku.com/new?template=https://github.com/Deshadeeth-Thisarana/Shadow--Music">Deploy</a>    
     
 <h2 align="center">
    Generating Pyrogram Session
