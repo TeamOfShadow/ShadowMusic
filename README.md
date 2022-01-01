@@ -44,7 +44,6 @@
    Install Locally Or On A VPS
 </h2>
 
-
 ```console
 $ git clone https://github.com/TeamOfShadow/ShadowMusic
 $ cd ShadowMusic
