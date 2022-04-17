@@ -78,7 +78,7 @@ async def initiate_bot():
         await asyncio.sleep(2.4)
         await startup_delete_last(_____)
     console.print(
-        "[bold green]Congrats!! 𝙎𝙤𝙨𝙝𝙞𝙚 𝙓 Music has started successfully!\n"
+        "[bold green]Congrats!! Soshiex music player has started successfully!\n"
     )
     try:
         await app.send_message(
