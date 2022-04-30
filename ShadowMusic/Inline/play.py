@@ -108,7 +108,7 @@ def secondary_markup(videoid, user_id):
             InlineKeyboardButton(text="⏹️", callback_data=f"stopcb"),
         ],
         [
-            InlineKeyboardButton(text="🔎 Search Lyrics", callback_data=f"lyrics {videoid}|{user_id}"),
+            InlineKeyboardButton(text="🔍 Search Lyrics", callback_data=f"lyrics {videoid}|{user_id}"),
             InlineKeyboardButton(text="🔗 More Menu", callback_data=f"other {videoid}|{user_id}"),
         ],
         [
@@ -133,7 +133,7 @@ def primary_markup(videoid, user_id, current_time, total_time):
             InlineKeyboardButton(text="⏹️", callback_data=f"stopcb"),
         ],
         [
-            InlineKeyboardButton(text="🔎 Search Lyrics", callback_data=f"lyrics {videoid}|{user_id}"),
+            InlineKeyboardButton(text="🔍 Search Lyrics", callback_data=f"lyrics {videoid}|{user_id}"),
             InlineKeyboardButton(text="🔗 More Menu", callback_data=f"other {videoid}|{user_id}"),
         ],
         [
@@ -155,7 +155,7 @@ def timer_markup(videoid, user_id, current_time, total_time):
             InlineKeyboardButton(text="⏹️", callback_data=f"stopcb"),
         ],
         [
-            InlineKeyboardButton(text="🔎 Search Lyrics", callback_data=f"lyrics {videoid}|{user_id}"),
+            InlineKeyboardButton(text="🔍 Search Lyrics", callback_data=f"lyrics {videoid}|{user_id}"),
             InlineKeyboardButton(text="🔗 More Menu", callback_data=f"other {videoid}|{user_id}"),
         ],
         [
