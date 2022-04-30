@@ -1,7 +1,7 @@
 {
   "name": "Shadow Music",
   "description": "A Telegram Music Bot with proper functions written in Python with Pyrogram and Py-Tgcalls.",
-  "repository": "https://github.com/TeamOfShadow/ShadowMusic",
+  "repository": "https://github.com/Sithumdimalsha4/ShadowMusic",
   "logo": "https://upload.wikimedia.org/wikipedia/commons/c/c3/Python-logo-notext.svg",
   "keywords": [
   "python3",
