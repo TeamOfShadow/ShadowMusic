@@ -20,7 +20,7 @@ def song_markup(videoid, duration, user_id, query, query_type):
         ],
         [
             InlineKeyboardButton(
-                text="🗑 Close Search",
+                text="❌ Close Menu",
                 callback_data=f"forceclose {query}|{user_id}",
             )
         ],
