@@ -191,12 +191,12 @@ async def start_command(_, message):
 
 ❇️**Title:** {title}
 
-⏳**Duration:** {duration} Mins
-👀**Views:** `{views}`
-⏰**Published Time:** {published}
-🎥**Channel Name:** {channel}
-📎**Channel Link:** [Visit From Here]({channellink})
-🔗**Video Link:** [Link]({link})
+⏳Duration:{duration} Mins
+👀Views:`{views}`
+⏰Published Time: {published}
+🎥Channel Name: {channel}
+📎Channel Link: [Visit From Here]({channellink})
+🔗Video Link:[Link]({link})
 
 ⚡️ __Searched Powered By {BOT_NAME}__"""
             key = InlineKeyboardMarkup(
