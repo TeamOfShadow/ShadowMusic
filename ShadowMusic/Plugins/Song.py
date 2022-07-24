@@ -64,7 +64,7 @@ async def play(_, message: Message):
                 "**Usage:**\n\n/song [Youtube Url or Music Name]\n\nDownloads the Particular Query."
             )
             return
-        mystic = await message.reply_text("🔍 Searching Your Query...")
+        mystic = await message.reply_text("Searching Your Query...")
         query = message.text.split(None, 1)[1]
         (
             title,
