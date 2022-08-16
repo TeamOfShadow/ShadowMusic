@@ -77,7 +77,7 @@ def inl_mark(videoid, user_id):
     buttons = [
         [
             InlineKeyboardButton(
-                text="Download or Upload Failed......", callback_data=f"down"
+                text="Download or Upload Failed...... Report My Team Please", callback_data=f"down"
             )
         ],
         [
