@@ -136,7 +136,7 @@ async def help_command(_, message):
     await app.send_message(message.chat.id, text, reply_markup=keyboard)
 
 
-@app.on_message(filters.command("start") & filters.private)
+@app.on_message(filters.command("vcstart") & filters.private)
 async def start_command(_, message):
     if len(message.text.split()) == 1:
         out = private_panel()
@@ -306,7 +306,7 @@ All commands can be used with: /
         await query.message.edit(
             text=top_text,
             reply_markup=InlineKeyboardMarkup(
-                paginate_modules(next_page + 1, HELPABLE, "help")
+                paginate_modules(next_page + 1, HELPABLE, "vchelp")
             ),
             disable_web_page_preview=True,
         )
@@ -315,7 +315,7 @@ All commands can be used with: /
         await query.message.edit(
             text=top_text,
             reply_markup=InlineKeyboardMarkup(
-                paginate_modules(0, HELPABLE, "help")
+                paginate_modules(0, HELPABLE, "vchelp")
             ),
             disable_web_page_preview=True,
         )
